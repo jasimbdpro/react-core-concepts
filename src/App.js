@@ -5,22 +5,19 @@ import './App.css';
 function App() {
   return (
     <div>
-      <AdobeProduct></AdobeProduct>
+      <CreativeCloudApp></CreativeCloudApp>
     </div>
   )
-
 }
-function AdobeProduct(props) {
+function CreativeCloudApp(props) {
   return (
-    <div style={{
-      color: 'red'
-    }}>
-      <h2>Adobe Photoshop CC</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat et recusandae quia repudiandae temporibus optio aut deleniti aliquam ullam debitis.</p>
-      <p>Price: 350$ <span>Yearly</span></p>
-    </div >
+    <div style={{ height: "200px", width: "160px", backgroundColor: '#fff4eb', margin: '10px', padding: '30px', }}>
+      <img src='favicon.ico'></img>
+      <h1>HEllo</h1>
+    </div>
   )
 }
+
 
 
 export default App;
