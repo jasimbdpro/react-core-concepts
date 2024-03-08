@@ -1,31 +1,55 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 // Default Component
 function App() {
+  const nayok = ['Anwar', 'Jafor', 'Alomgir', 'Salman']
+  const products = [
+    { name: 'Photoshop', price: '$90.99' },
+    { name: 'Illustrator', price: '60.99' },
+    { name: 'PDF reader', price: '$6.99' },
+  ]
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', }}>
-      <CreativeCloudApp names='Adobe Express' text='Quickly and easily make standout content from thousands of beautiful templates.'></CreativeCloudApp>
-      <CreativeCloudApp names='Photoshop Express' text='Quickly edit, collage, and retouch photos so they stand out on social and everywhere else.'></CreativeCloudApp>
-      <CreativeCloudApp names='Adobe Firefly' text='Use everyday language to create extraordinary results with generative Al.'></CreativeCloudApp>
+    <div className='App'>
+      <header className='App-header'>
+        <p>I am React Project</p>
+        <Counter></Counter>
+        <Users></Users>
+
+      </header>
+
     </div>
   )
 }
-const Heading = () => {
-  <div>
-    <h1>Make share-worthy social posts and unforgettable content wherever you are.</h1>
-  </div>
-}
-function CreativeCloudApp(props) {
+
+function Users() {
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(res => res.json())
+      .then(data => setUsers(data))
+  }, [])
+
   return (
-    <div style={{ height: "300px", width: "300px", backgroundColor: '#fff4eb', margin: '10px', padding: '30px', border: '2px solid red', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-      <div><img width='50px' height='50px' src='Screenshot_1.png'></img></div>
-      <div style={{ display: 'flex', justifyContent: "space-between", flex: 1 }}>
-        <div style={{ padding: '15px', }}>
-          <h1><u>{props.names}</u></h1>
-          <p>{props.text}</p>
-        </div>
-      </div>
+    <div>
+      <h2>Dynamic Users: {users.length} </h2>
+      {
+        users.map(user => <li>{user.phone}</li>)
+      }
+    </div>
+  )
+}
+function Counter(props) {
+  const [count, setCount] = useState(0);
+  const handleIncrease = () => {
+    setCount(count + 1);
+
+  }
+
+  return (
+    <div>
+      <h1>count: {count}</h1>
+      <button onClick={handleIncrease}>Increase</button>
     </div>
   )
 }
